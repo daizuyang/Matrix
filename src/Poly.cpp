@@ -46,11 +46,11 @@ Poly Poly::operator * (const Poly & p) const
 }
 Poly Poly::operator + (const Poly & p) const
 {
-	return add_or_minus(1, p);
+	return add_or_minus(Utils::positive, p);
 }
 Poly Poly::operator - (const Poly & p) const
 {
-	return add_or_minus(-1, p);
+	return add_or_minus(Utils::minus, p);
 }
 Poly Poly::operator - () const
 {
@@ -97,7 +97,7 @@ std::vector<char> Poly::merge_variables(const std::vector<char> &p_variables) co
 	return newVariables;
 }
 
-Poly Poly::add_or_minus(int sign, const Poly & p2) const
+Poly Poly::add_or_minus(Utils::Sign sign, const Poly & p2) const
 {
 	assert((sign == 1) || (sign == -1));
 	Poly ret(merge_variables(p2.getVaribles()));

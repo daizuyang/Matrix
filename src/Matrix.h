@@ -1,5 +1,6 @@
 #pragma once
 #include "stdafx.h"
+#include"Utils.h"
 #include<memory.h>
 #include<assert.h>
 template<class T>
@@ -69,7 +70,7 @@ public:
 		return ret;
 	}
 private:
-	Matrix add_or_minus(int sign, const Matrix &m2) const
+	Matrix add_or_minus(Utils::Sign sign, const Matrix &m2) const
 	{
 		assert((sign == 1) || (sign == -1));
 		assert(Get_NumCols() == m2.Get_NumCols() && Get_NumRows() == m2.Get_NumRows());

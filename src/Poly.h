@@ -1,5 +1,6 @@
 #pragma once
 #include "stdafx.h"
+#include"Utils.h"
 #include<vector>
 #include<map>
 class Poly
@@ -20,6 +21,6 @@ private:
 	std::vector<char> merge_variables(const std::vector<char> &p_variables) const;
 	std::vector<char> variables;
 	std::vector< std::pair< std::map<char, int>, double> > poly;
-	Poly add_or_minus(int sign, const Poly &p2) const;
+	Poly add_or_minus(Utils::Sign sign, const Poly &p2) const;
 };
 
