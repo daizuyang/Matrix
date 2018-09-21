@@ -37,11 +37,11 @@ public:
 	}
 	Matrix operator + (const Matrix & m) const
 	{
-		return add_or_minus(1, m);
+		return add_or_minus(Utils::positive, m);
 	}
 	Matrix operator - (const Matrix & m) const
 	{
-		return add_or_minus(-1, m);
+		return add_or_minus(Utils::minus, m);
 	}
 	Matrix operator - () const
 	{
@@ -78,7 +78,13 @@ private:
 		for (size_t i = 0; i != n_rows; ++i)
 			for (size_t j = 0; j != n_cols; ++j)
 			{
-				ret.Set_Element(i, j, matrix[i][j] + sign * m2.Get_Element(i, j));
+				if (sign == Utils::positive) {
+					ret.Set_Element(i, j, matrix[i][j] + m2.Get_Element(i, j));
+				}
+				else
+				{
+					ret.Set_Element(i, j, matrix[i][j] - m2.Get_Element(i, j));
+				}
 			}
 		return ret;
 	}
