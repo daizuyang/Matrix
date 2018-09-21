@@ -36,12 +36,19 @@ public:
 	}
 	Matrix operator + (const Matrix & m) const
 	{
-		assert(m.Get_NumCols() == n_cols && m.Get_NumRows() == n_rows);
-		Matrix ret(m.Get_NumRows(), m.Get_NumCols());
+		return add_or_minus(1, m);
+	}
+	Matrix operator - (const Matrix & m) const
+	{
+		return add_or_minus(-1, m);
+	}
+	Matrix operator - () const
+	{
+		Matrix ret(Get_NumRows(), Get_NumCols());
 		for (size_t i = 0; i != n_rows; ++i)
 			for (size_t j = 0; j != n_cols; ++j)
 			{
-				ret.Set_Element(i, j, matrix[i][j] + m.Get_Element(i, j));
+				ret.Set_Element(i, j, -matrix[i][j]);
 			}
 		return ret;
 	}
@@ -62,6 +69,18 @@ public:
 		return ret;
 	}
 private:
+	Matrix add_or_minus(int sign, const Matrix &m2) const
+	{
+		assert((sign == 1) || (sign == -1));
+		assert(Get_NumCols() == m2.Get_NumCols() && Get_NumRows() == m2.Get_NumRows());
+		Matrix ret(Get_NumRows(), Get_NumCols());
+		for (size_t i = 0; i != n_rows; ++i)
+			for (size_t j = 0; j != n_cols; ++j)
+			{
+				ret.Set_Element(i, j, matrix[i][j] + sign * m2.Get_Element(i, j));
+			}
+		return ret;
+	}
 	std::vector< std::vector<T> > matrix;
 	size_t n_cols, n_rows;
 };
