@@ -1,5 +1,4 @@
 #pragma once
-#include "stdafx.h"
 #include"Utils.h"
 #include<vector>
 #include<map>

@@ -1,4 +1,3 @@
-#include "stdafx.h"
 #include"Poly.h"
 #include<assert.h>
 #include<memory.h>
