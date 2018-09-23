@@ -16,6 +16,8 @@ int main()
 
 	Poly p3 = p1 * p2;
 	Poly p4 =  - p2 - p1;
+
+	Poly p5 = p1.First_Derivative('b').First_Derivative('b');
 	Matrix<double> mat(2,3), mat2(3,3);
 	mat.Set_Element(0, 1, 1.2);
 	mat2.Set_Element(1, 2, 1);
@@ -26,7 +28,9 @@ int main()
 	mp1.Set_Element(0, 0, p1);
 	mp2.Set_Element(0, 0, p2);
 	auto mp3 = (-mp2)*mp1 ;
-
+	auto mp4 = mp1.First_Derivative('z');
+	auto sum = -mp2 + mp2 - mp2;
+	mp3.Trace();
     return 0;
 }
 

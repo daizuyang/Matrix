@@ -68,10 +68,29 @@ public:
 			}
 		return ret;
 	}
+	T Trace() const
+	{
+		assert(n_cols == n_rows);
+		T ret(matrix[0][0]);
+		for (size_t i = 1; i != n_cols; ++i)
+		{
+			ret = ret + matrix[i][i];
+		}
+		return ret;
+	}
+	Matrix First_Derivative(char v)
+	{
+		Matrix ret(n_rows, n_cols);
+		for (size_t i = 0; i != n_rows; ++i)
+			for (size_t j = 0; j != n_cols; ++j)
+			{
+				ret.Set_Element(i, j, matrix[i][j].First_Derivative(v));
+			}
+		return ret;
+	}
 private:
 	Matrix add_or_minus(Utils::Sign sign, const Matrix &m2) const
 	{
-		assert((sign == 1) || (sign == -1));
 		assert(Get_NumCols() == m2.Get_NumCols() && Get_NumRows() == m2.Get_NumRows());
 		Matrix ret(Get_NumRows(), Get_NumCols());
 		for (size_t i = 0; i != n_rows; ++i)
